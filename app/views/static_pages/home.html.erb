@@ -1,2 +1,56 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCft0yMwn8nFHVm-xbcdbAH-oRu8_X-OVg&sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(42.358607,-71.093057),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+			var map = new google.maps.Map(document.getElementById("map_canvas"),
+				mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: map.getCenter(), 
+				map: map,
+				title: 'Your first event'
+				});
+
+			function createMarker(latLng){
+				var marker = new google.maps.Marker({
+					position: latLng,
+					map: map,
+					title: 'Another marker'
+				});
+				google.maps.event.addListener(marker, 'click', function(){
+					marker.setVisible(false);
+				});
+			}
+
+			google.maps.event.addListener(marker, 'click', function(){
+				marker.setVisible(false);
+			})
+
+			google.maps.event.addListener(map, 'click', function(event){
+					createMarker(event.latLng);							
+				});		
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+  	<h1>Reuse 2.0</h1>
+    <div id="map_canvas" style="width:80%; height:80%; margin: auto;"></div>
+  </body>
+</html>
