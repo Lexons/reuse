@@ -15,7 +15,13 @@
         var mapOptions = {
           center: new google.maps.LatLng(42.358607,-71.093057),
           zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+					scaleControl: true,
+					zoomControl: true,
+			    zoomControlOptions: {
+				  	style: google.maps.ZoomControlStyle.SMALL
+					},
+					panControl: false,
 				};
 				
 			var map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -50,7 +56,7 @@
     </script>
   </head>
   <body>
-  	<h1>Reuse 2.0</h1>
+  	<h1 style="text-align:center;color:red;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;margin: 0px 0px 0px 0px;">Reuse 2.0</h1>
     <div id="map_canvas" style="width:80%; height:80%; margin: auto;"></div>
   </body>
 </html>
